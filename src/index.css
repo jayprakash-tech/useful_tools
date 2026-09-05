@@ -1,1 +1,157 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Manrope", ui-sans-serif, sans-serif;
+
+  --color-brand-50: #effaf8;
+  --color-brand-100: #d6f2ed;
+  --color-brand-200: #ade3db;
+  --color-brand-300: #79ccc3;
+  --color-brand-400: #45ada5;
+  --color-brand-500: #2a918b;
+  --color-brand-600: #1f7571;
+  --color-brand-700: #1c5e5b;
+  --color-brand-800: #1a4b49;
+  --color-brand-900: #173f3e;
+  --color-brand-950: #0a2423;
+
+  --color-ink-50: #f4f7f7;
+  --color-ink-100: #e6edec;
+  --color-ink-200: #cdd9d8;
+  --color-ink-300: #a8bcbc;
+  --color-ink-400: #7c9898;
+  --color-ink-500: #5d7a7a;
+  --color-ink-600: #496162;
+  --color-ink-700: #3c4f50;
+  --color-ink-800: #273536;
+  --color-ink-900: #16201f;
+  --color-ink-950: #0b1312;
+
+  --color-paper: #f5f8f7;
+  --color-card: #ffffff;
+
+  --shadow-soft: 0 1px 2px rgb(11 19 18 / 0.05), 0 6px 20px -8px rgb(11 19 18 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(11 19 18 / 0.06), 0 16px 34px -12px rgb(11 19 18 / 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-ink-900 font-sans antialiased dark:bg-ink-950 dark:text-ink-100;
+}
+
+::selection {
+  background: var(--color-brand-200);
+  color: var(--color-brand-950);
+}
+.dark ::selection {
+  background: var(--color-brand-700);
+  color: #fff;
+}
+
+h1, h2, h3, h4 {
+  @apply font-display;
+}
+
+/* ---------- scrollbars ---------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(124 152 152 / 0.4) transparent;
+}
+
+/* ---------- range inputs ---------- */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--color-brand-500) 0%, var(--color-brand-500) var(--fill, 50%), var(--color-ink-200) var(--fill, 50%), var(--color-ink-200) 100%);
+  outline: none;
+  cursor: pointer;
+}
+.dark input[type="range"] {
+  background: linear-gradient(to right, var(--color-brand-400) 0%, var(--color-brand-400) var(--fill, 50%), var(--color-ink-700) var(--fill, 50%), var(--color-ink-700) 100%);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--color-brand-500);
+  box-shadow: 0 1px 4px rgb(11 19 18 / 0.25);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--color-brand-500);
+  box-shadow: 0 1px 4px rgb(11 19 18 / 0.25);
+}
+input[type="range"]:focus-visible {
+  box-shadow: 0 0 0 3px rgb(42 145 139 / 0.35);
+}
+
+/* ---------- checkerboard for transparency ---------- */
+.checker {
+  background-color: #fff;
+  background-image: conic-gradient(#e3e9e8 25%, #ffffff 0 50%, #e3e9e8 0 75%, #ffffff 0);
+  background-size: 18px 18px;
+}
+.dark .checker {
+  background-image: conic-gradient(#1d2a29 25%, #15201f 0 50%, #1d2a29 0 75%, #15201f 0);
+}
+
+/* ---------- reveal on scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.reveal.reveal-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+.toast-in { animation: toast-in 0.22s ease both; }
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+.pulse-soft { animation: pulse-soft 1.6s ease-in-out infinite; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin 0.8s linear infinite; }
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float-y { animation: float-y 5s ease-in-out infinite; }
+
+/* dotted ambient background */
+.dots-bg {
+  background-image: radial-gradient(rgb(31 117 113 / 0.13) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.dark .dots-bg {
+  background-image: radial-gradient(rgb(69 173 165 / 0.1) 1px, transparent 1px);
+}
+
+.focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-paper dark:focus-visible:ring-offset-ink-950;
+}

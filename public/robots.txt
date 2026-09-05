@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Hash-routed SPA: all views are reachable from the app shell.
+# For production SEO, consider prerendering or migrating routes to an SSG framework.
+Sitemap: https://clearimagetools.app/sitemap.xml
