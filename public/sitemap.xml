@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ClearImageTools sitemap.
+  Note: the deployed app is a hash-routed SPA; URLs use #/ fragments.
+  For maximum crawler coverage, prerender these routes or migrate to an
+  SSG framework before large-scale SEO campaigns.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://clearimagetools.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://clearimagetools.app/#/categories</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://clearimagetools.app/#/about</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/contact</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/privacy-policy</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://clearimagetools.app/#/terms</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+
+  <!-- Categories -->
+  <url><loc>https://clearimagetools.app/#/categories/compression</loc><priority>0.8</priority></url>
+  <url><loc>https://clearimagetools.app/#/categories/conversion</loc><priority>0.8</priority></url>
+  <url><loc>https://clearimagetools.app/#/categories/resize-transform</loc><priority>0.8</priority></url>
+  <url><loc>https://clearimagetools.app/#/categories/crop</loc><priority>0.8</priority></url>
+  <url><loc>https://clearimagetools.app/#/categories/enhancement</loc><priority>0.8</priority></url>
+  <url><loc>https://clearimagetools.app/#/categories/watermark-text</loc><priority>0.8</priority></url>
+  <url><loc>https://clearimagetools.app/#/categories/color-analysis</loc><priority>0.8</priority></url>
+  <url><loc>https://clearimagetools.app/#/categories/generators</loc><priority>0.8</priority></url>
+  <url><loc>https://clearimagetools.app/#/categories/batch</loc><priority>0.8</priority></url>
+
+  <!-- Compression -->
+  <url><loc>https://clearimagetools.app/#/tools/image-compressor</loc><priority>0.9</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/batch-image-compressor</loc><priority>0.7</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/image-quality-reducer</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/target-size-compressor</loc><priority>0.7</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/resize-and-compress</loc><priority>0.7</priority></url>
+
+  <!-- Conversion -->
+  <url><loc>https://clearimagetools.app/#/tools/image-converter</loc><priority>0.9</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/jpg-to-png</loc><priority>0.7</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/png-to-jpg</loc><priority>0.7</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/webp-to-jpg</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/jpg-to-webp</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/png-to-webp</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/webp-to-png</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/svg-to-png</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/svg-to-jpg</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/heic-to-jpg</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/image-to-base64</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/base64-to-image</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/image-to-pdf</loc><priority>0.8</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/images-to-zip</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/blob-url-tool</loc><priority>0.5</priority></url>
+
+  <!-- Resize & Transform -->
+  <url><loc>https://clearimagetools.app/#/tools/image-resizer</loc><priority>0.9</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/percentage-resizer</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/aspect-ratio-resizer</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/image-rotate</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/image-flip</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/image-mirror</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/rounded-corner-maker</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/border-adder</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/shadow-generator</loc><priority>0.6</priority></url>
+
+  <!-- Crop -->
+  <url><loc>https://clearimagetools.app/#/tools/image-crop</loc><priority>0.9</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/fixed-size-crop</loc><priority>0.7</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/profile-picture-maker</loc><priority>0.7</priority></url>
+
+  <!-- Enhancement -->
+  <url><loc>https://clearimagetools.app/#/tools/brightness-editor</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/contrast-editor</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/saturation-editor</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/hue-editor</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/grayscale-converter</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/black-and-white-converter</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/sepia-converter</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/invert-colors</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/blur-tool</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/sharpen-tool</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/auto-enhance</loc><priority>0.7</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/color-temperature</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/vignette-tool</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/vintage-filters</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/color-overlay</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/duotone</loc><priority>0.6</priority></url>
+
+  <!-- Watermark & Text -->
+  <url><loc>https://clearimagetools.app/#/tools/text-watermark</loc><priority>0.7</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/image-watermark</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/text-on-image</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/meme-generator</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/badge-adder</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/frame-maker</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/social-size-maker</loc><priority>0.7</priority></url>
+
+  <!-- Color & Analysis -->
+  <url><loc>https://clearimagetools.app/#/tools/color-picker</loc><priority>0.7</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/dominant-colors</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/palette-extractor</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/image-info</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/exif-viewer</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/exif-remover</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/aspect-ratio-calculator</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/print-size-calculator</loc><priority>0.5</priority></url>
+
+  <!-- Generators -->
+  <url><loc>https://clearimagetools.app/#/tools/favicon-generator</loc><priority>0.7</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/placeholder-image</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/solid-color-image</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/gradient-image</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/qr-code-generator</loc><priority>0.7</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/og-image-generator</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/before-after-comparator</loc><priority>0.5</priority></url>
+
+  <!-- Batch -->
+  <url><loc>https://clearimagetools.app/#/tools/batch-resizer</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/batch-converter</loc><priority>0.6</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/batch-rename</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/batch-rounded-corners</loc><priority>0.5</priority></url>
+  <url><loc>https://clearimagetools.app/#/tools/batch-watermark</loc><priority>0.6</priority></url>
+</urlset>
