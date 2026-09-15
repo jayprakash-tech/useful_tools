@@ -18,7 +18,7 @@ export function Button({
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: BtnVariant; busy?: boolean }) {
   const styles: Record<BtnVariant, string> = {
     primary:
-      "bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800 shadow-soft disabled:bg-ink-300 dark:disabled:bg-ink-700 disabled:text-white/70",
+      "bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800 disabled:bg-ink-300 dark:disabled:bg-ink-700 disabled:text-white/70",
     secondary:
       "bg-white text-ink-800 border border-ink-200 hover:border-brand-400 hover:text-brand-700 dark:bg-ink-800 dark:text-ink-100 dark:border-ink-700 dark:hover:border-brand-500 dark:hover:text-brand-300 disabled:opacity-50",
     ghost:
@@ -29,7 +29,7 @@ export function Button({
   return (
     <button
       className={cx(
-        "focus-ring inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all duration-150 disabled:cursor-not-allowed active:scale-[0.98]",
+        "btn-3d focus-ring inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold disabled:cursor-not-allowed",
         styles[variant],
         className,
       )}

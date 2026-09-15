@@ -8,19 +8,13 @@ import { SITE_NAME } from "../lib/seo";
 export function Logo({ compact }: { compact?: boolean }) {
   return (
     <a href="#/" className="focus-ring group flex items-center gap-2.5 rounded-lg" aria-label="Usefull Tools JEEBhaiya home">
-      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden className="transition-transform duration-300 group-hover:scale-105">
-        <defs>
-          <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#2a918b" />
-            <stop offset="1" stopColor="#1f7571" />
-          </linearGradient>
-        </defs>
-        <rect x="1.5" y="1.5" width="31" height="31" rx="9" fill="url(#logoGrad)" />
-        <rect x="7" y="13" width="20" height="13" rx="2" fill="#fff" />
-        <path d="M12 13V10.5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2V13" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
-        <rect x="7" y="18" width="20" height="1.2" fill="#1f7571" />
-        <rect x="15.5" y="17" width="3" height="3" rx="0.8" fill="#1f7571" />
-      </svg>
+      <img 
+        src="/logo.svg" 
+        alt="Usefull Tools JEEBhaiya" 
+        width="40" 
+        height="40" 
+        className="icon-3d rounded-lg"
+      />
       {!compact && (
         <span className="font-display text-[17px] font-bold tracking-tight text-ink-900 dark:text-white">
           Usefull<span className="text-brand-600 dark:text-brand-400">Tools</span> JEEBhaiya

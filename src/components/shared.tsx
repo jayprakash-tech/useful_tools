@@ -181,10 +181,10 @@ export function ToolCard({ tool, delay = 0 }: { tool: Tool; delay?: number }) {
   return (
     <a
       href={`#/tools/${tool.slug}`}
-      className="focus-ring group flex h-full flex-col rounded-xl border border-ink-200/70 bg-card p-5 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-brand-300 hover:shadow-lift dark:border-ink-700/60 dark:bg-ink-900 dark:hover:border-brand-700"
+      className="tool-card-3d focus-ring group flex h-full flex-col rounded-xl border border-ink-200/70 bg-card p-5 shadow-soft dark:border-ink-700/60 dark:bg-ink-900"
     >
       <div className="flex items-start justify-between gap-3">
-        <span className="rounded-lg bg-brand-100 p-2.5 text-brand-700 transition-transform duration-200 group-hover:scale-110 dark:bg-brand-900/70 dark:text-brand-300">
+        <span className="icon-3d rounded-lg bg-brand-100 p-2.5 text-brand-700 dark:bg-brand-900/70 dark:text-brand-300">
           <Icon size={19} aria-hidden />
         </span>
         {tool.popular && <Badge>Popular</Badge>}
@@ -208,9 +208,9 @@ export function CategoryCard({ slug }: { slug: string }) {
   return (
     <a
       href={`#/categories/${cat.slug}`}
-      className="focus-ring group flex items-start gap-4 rounded-xl border border-ink-200/70 bg-card p-5 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-brand-300 hover:shadow-lift dark:border-ink-700/60 dark:bg-ink-900 dark:hover:border-brand-700"
+      className="card-3d focus-ring group flex items-start gap-4 rounded-xl border border-ink-200/70 bg-card p-5 shadow-soft dark:border-ink-700/60 dark:bg-ink-900"
     >
-      <span className="rounded-lg bg-brand-100 p-3 text-brand-700 transition-transform group-hover:scale-110 dark:bg-brand-900/70 dark:text-brand-300">
+      <span className="icon-3d rounded-lg bg-brand-100 p-3 text-brand-700 dark:bg-brand-900/70 dark:text-brand-300">
         <Icon size={21} aria-hidden />
       </span>
       <span>

@@ -222,19 +222,17 @@ export function NotebookPanel({ tool }: { tool: Tool }) {
     setBusy(true);
     setErr(null);
     try {
-      const { toPng } = await import("html-to-image");
+      const html2canvas = (await import("html2canvas")).default;
       const { jsPDF } = await import("jspdf");
       const element = renderRef.current;
       
-      // Convert HTML to high-quality PNG
-      const dataUrl = await toPng(element, {
-        quality: 0.98,
-        pixelRatio: 2,
-        cacheBust: true,
-        style: {
-          transform: "scale(1)",
-          transformOrigin: "top left",
-        },
+      // Capture the notebook as a high-quality canvas
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: "#ffffff",
+        logging: false,
       });
       
       // Create PDF
@@ -247,26 +245,45 @@ export function NotebookPanel({ tool }: { tool: Tool }) {
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
       const margin = 10;
-      const maxWidth = pageWidth - margin * 2;
+      const contentWidth = pageWidth - margin * 2;
+      const contentHeight = pageHeight - margin * 2;
       
-      // Load image to get dimensions
-      const img = new Image();
-      img.src = dataUrl;
-      await new Promise((resolve) => { img.onload = resolve; });
-      
-      const imgWidth = img.width;
-      const imgHeight = img.height;
-      const ratio = maxWidth / imgWidth;
+      // Calculate scaling
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+      const ratio = contentWidth / imgWidth;
       const scaledHeight = imgHeight * ratio;
       
-      // Add image to PDF, handling multiple pages if needed
+      // Split into pages
+      const pageHeightPx = contentHeight / ratio;
       let position = 0;
-      const pageContentHeight = pageHeight - margin * 2;
+      let pageNum = 0;
       
-      while (position < scaledHeight) {
-        if (position > 0) pdf.addPage();
-        pdf.addImage(dataUrl, "PNG", margin, margin - position, maxWidth, scaledHeight);
-        position += pageContentHeight;
+      while (position < imgHeight) {
+        if (pageNum > 0) pdf.addPage();
+        
+        // Create a canvas for this page
+        const pageCanvas = document.createElement("canvas");
+        const pageCtx = pageCanvas.getContext("2d")!;
+        
+        const sliceHeight = Math.min(pageHeightPx, imgHeight - position);
+        pageCanvas.width = imgWidth;
+        pageCanvas.height = sliceHeight;
+        
+        // Copy the slice from the original canvas
+        pageCtx.drawImage(
+          canvas,
+          0, position, imgWidth, sliceHeight,
+          0, 0, imgWidth, sliceHeight
+        );
+        
+        // Add to PDF
+        const pageDataUrl = pageCanvas.toDataURL("image/png", 0.98);
+        const scaledSliceHeight = sliceHeight * ratio;
+        pdf.addImage(pageDataUrl, "PNG", margin, margin, contentWidth, scaledSliceHeight);
+        
+        position += pageHeightPx;
+        pageNum++;
       }
       
       pdf.save(fileName.replace(/\.ipynb$/, "") + ".pdf");
