@@ -187,9 +187,116 @@ export function NotebookPanel({ tool }: { tool: Tool }) {
     }
   };
 
+  const resolveNotebookUrl = async (input: string): Promise<{ url: string; fileName: string }> => {
+    const trimmed = input.trim();
+    
+    // Direct URL to .ipynb file
+    if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+      // Hugging Face URL
+      if (trimmed.includes("huggingface.co")) {
+        // Convert huggingface.co/datasets/.../blob/... to raw URL
+        const hfMatch = trimmed.match(/huggingface\.co\/(?:datasets\/)?([^/]+\/[^/]+)\/(?:blob|resolve)\/(.+)/);
+        if (hfMatch) {
+          const [, repo, path] = hfMatch;
+          return {
+            url: `https://huggingface.co/datasets/${repo}/resolve/main/${path}`,
+            fileName: path.split("/").pop() || "notebook.ipynb"
+          };
+        }
+      }
+      
+      // GitHub raw URL or blob URL
+      if (trimmed.includes("github.com")) {
+        // Convert github.com/.../blob/... to raw URL
+        const ghMatch = trimmed.match(/github\.com\/([^/]+\/[^/]+)\/blob\/(.+)/);
+        if (ghMatch) {
+          const [, repo, path] = ghMatch;
+          return {
+            url: `https://raw.githubusercontent.com/${repo}/${path}`,
+            fileName: path.split("/").pop() || "notebook.ipynb"
+          };
+        }
+        // Already raw URL
+        if (trimmed.includes("raw.githubusercontent.com")) {
+          return {
+            url: trimmed,
+            fileName: trimmed.split("/").pop() || "notebook.ipynb"
+          };
+        }
+      }
+      
+      // Gist URL
+      if (trimmed.includes("gist.github.com")) {
+        const gistMatch = trimmed.match(/gist\.github\.com\/(?:[^/]+\/)?([a-f0-9]+)/);
+        if (gistMatch) {
+          const gistId = gistMatch[1];
+          // Fetch gist to get the raw URL
+          const response = await fetch(`https://api.github.com/gists/${gistId}`);
+          if (!response.ok) throw new Error("Failed to fetch gist");
+          const gist = await response.json();
+          const files = Object.values(gist.files) as any[];
+          const notebook = files.find(f => f.filename.endsWith(".ipynb"));
+          if (!notebook) throw new Error("No notebook found in this gist");
+          return {
+            url: notebook.raw_url,
+            fileName: notebook.filename
+          };
+        }
+      }
+      
+      // Direct URL
+      return {
+        url: trimmed,
+        fileName: trimmed.split("/").pop() || "notebook.ipynb"
+      };
+    }
+    
+    // Gist ID (40 character hex string)
+    if (/^[a-f0-9]{32,40}$/i.test(trimmed)) {
+      const response = await fetch(`https://api.github.com/gists/${trimmed}`);
+      if (!response.ok) throw new Error("Failed to fetch gist. Please check the Gist ID.");
+      const gist = await response.json();
+      const files = Object.values(gist.files) as any[];
+      const notebook = files.find(f => f.filename.endsWith(".ipynb"));
+      if (!notebook) throw new Error("No notebook found in this gist");
+      return {
+        url: notebook.raw_url,
+        fileName: notebook.filename
+      };
+    }
+    
+    // GitHub username/repo
+    if (/^[^/]+\/[^/]+$/.test(trimmed)) {
+      const [owner, repo] = trimmed.split("/");
+      // Try to find notebooks in the repo
+      const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents`);
+      if (!response.ok) throw new Error("Failed to access repository. Please check the username/repo.");
+      const contents = await response.json() as any[];
+      const notebooks = contents.filter(f => f.name.endsWith(".ipynb") && f.type === "file");
+      
+      if (notebooks.length === 0) {
+        throw new Error("No notebooks found in the root of this repository. Try providing a direct URL to a specific notebook.");
+      }
+      
+      // If multiple notebooks, use the first one (or could show a picker)
+      const notebook = notebooks[0];
+      return {
+        url: notebook.download_url,
+        fileName: notebook.name
+      };
+    }
+    
+    // Just a username - show helpful error
+    if (/^[a-zA-Z0-9-]+$/.test(trimmed)) {
+      throw new Error(`Please provide more specific information. Try:\n• ${trimmed}/repository-name\n• A direct URL to a notebook\n• A Gist ID`);
+    }
+    
+    throw new Error("Invalid input format. Please provide a URL, GitHub username/repo, or Gist ID.");
+  };
+
   const loadFromUrl = async () => {
     if (!url.trim()) {
-      setErr("Please enter a URL");
+      setErr("Please enter a URL or identifier");
       return;
     }
     setErr(null);
@@ -197,19 +304,19 @@ export function NotebookPanel({ tool }: { tool: Tool }) {
     setNotebook(null);
     setBusy(true);
     try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Failed to fetch: ${response.statusText}`);
+      const { url: resolvedUrl, fileName } = await resolveNotebookUrl(url);
+      const response = await fetch(resolvedUrl);
+      if (!response.ok) throw new Error(`Failed to fetch notebook: ${response.statusText}`);
       const text = await response.text();
       const nb = JSON.parse(text) as Notebook;
       if (!nb.cells || !Array.isArray(nb.cells)) {
         throw new Error("Invalid notebook format: missing cells array.");
       }
-      const urlParts = url.split("/");
-      setFileName(urlParts[urlParts.length - 1] || "notebook.ipynb");
+      setFileName(fileName);
       setNotebook(nb);
       const html = await renderNotebook(nb);
       setRenderedHtml(html);
-      toast("Notebook loaded from URL");
+      toast("Notebook loaded successfully");
     } catch (e) {
       setErr(errMsg(e));
     } finally {
@@ -331,10 +438,10 @@ export function NotebookPanel({ tool }: { tool: Tool }) {
           ) : (
             <div className="space-y-3">
               <input
-                type="url"
+                type="text"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder="https://raw.githubusercontent.com/.../notebook.ipynb"
+                placeholder="URL, GitHub user/repo, or Gist ID"
                 className="w-full rounded-lg border border-ink-200 bg-white px-4 py-3 text-sm dark:border-ink-600 dark:bg-ink-800 dark:text-ink-100"
               />
               <button
@@ -344,9 +451,16 @@ export function NotebookPanel({ tool }: { tool: Tool }) {
               >
                 Load Notebook
               </button>
-              <p className="text-xs text-ink-500">
-                Tip: Use raw GitHub URLs (raw.githubusercontent.com) or any direct link to .ipynb files
-              </p>
+              <div className="rounded-lg bg-ink-50 p-3 text-xs text-ink-600 dark:bg-ink-800 dark:text-ink-400">
+                <p className="font-semibold mb-2">Supported formats:</p>
+                <ul className="space-y-1 ml-4 list-disc">
+                  <li><span className="font-mono">https://.../notebook.ipynb</span> - Direct URL</li>
+                  <li><span className="font-mono">username/repository</span> - GitHub repo</li>
+                  <li><span className="font-mono">abc123def456...</span> - Gist ID</li>
+                  <li><span className="font-mono">https://gist.github.com/...</span> - Gist URL</li>
+                  <li><span className="font-mono">https://huggingface.co/...</span> - Hugging Face</li>
+                </ul>
+              </div>
             </div>
           )}
         </>
