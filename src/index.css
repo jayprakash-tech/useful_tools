@@ -229,12 +229,28 @@ input[type="range"]:focus-visible {
 .nb-output-image {
   @apply my-2 max-w-full rounded;
 }
+.nb-output-svg {
+  @apply my-2;
+}
+.nb-output-svg svg {
+  @apply max-w-full;
+}
 .nb-output-html {
   @apply my-2;
 }
 .nb-output-latex {
   @apply my-2 overflow-x-auto;
 }
+.nb-output-markdown {
+  @apply my-2;
+}
+.nb-output-markdown h1, .nb-output-markdown h2, .nb-output-markdown h3 {
+  @apply font-bold;
+}
+.nb-output-markdown h1 { @apply text-xl; }
+.nb-output-markdown h2 { @apply text-lg; }
+.nb-output-markdown h3 { @apply text-base; }
+.nb-output-markdown p { @apply my-1; }
 .nb-output-error {
   @apply my-1 overflow-x-auto whitespace-pre-wrap rounded bg-rose-50 p-2 font-mono text-xs text-rose-700 dark:bg-rose-950/40 dark:text-rose-300;
 }

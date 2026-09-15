@@ -146,7 +146,7 @@ export function HomePage() {
                 <ToolSearch big />
                 <div className="mt-4 flex flex-wrap items-center gap-2">
                   <span className="text-xs font-bold uppercase tracking-wide text-ink-400">Quick start:</span>
-                  {["image-compressor", "jupyter-notebook-viewer", "image-converter", "image-resizer", "image-to-pdf"].map((slug) => {
+                  {["image-compressor", "jupyter-notebook-viewer", "image-to-pdf", "color-picker", "qr-code-generator"].map((slug) => {
                     const t = TOOLS.find((x) => x.slug === slug)!;
                     return (
                       <a key={slug} href={`#/tools/${slug}`} className="focus-ring rounded-full border border-ink-200 bg-white px-3 py-1 text-xs font-bold text-ink-600 transition-colors hover:border-brand-400 hover:text-brand-700 dark:border-ink-700 dark:bg-ink-900 dark:text-ink-300 dark:hover:text-brand-400">
