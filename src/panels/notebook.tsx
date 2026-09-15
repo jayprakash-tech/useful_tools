@@ -294,6 +294,50 @@ export function NotebookPanel({ tool }: { tool: Tool }) {
     throw new Error("Invalid input format. Please provide a URL, GitHub username/repo, or Gist ID.");
   };
 
+  const fetchWithCorsProxy = async (targetUrl: string): Promise<string> => {
+    // Try direct fetch first
+    try {
+      const response = await fetch(targetUrl);
+      if (response.ok) {
+        return await response.text();
+      }
+    } catch (e) {
+      // Direct fetch failed, try CORS proxies
+    }
+
+    // List of CORS proxy services to try
+    const corsProxies = [
+      `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
+      `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`,
+      `https://cors.eu.org/${targetUrl}`,
+    ];
+
+    for (const proxyUrl of corsProxies) {
+      try {
+        const response = await fetch(proxyUrl);
+        if (response.ok) {
+          const text = await response.text();
+          // Verify it's actually JSON (not an error page)
+          try {
+            JSON.parse(text);
+            return text;
+          } catch {
+            // Not valid JSON, try next proxy
+            continue;
+          }
+        }
+      } catch (e) {
+        // This proxy failed, try next one
+        continue;
+      }
+    }
+
+    throw new Error(
+      "Unable to fetch the notebook. This may be due to CORS restrictions. " +
+      "Try downloading the file and uploading it directly, or use a GitHub/Gist link instead."
+    );
+  };
+
   const loadFromUrl = async () => {
     if (!url.trim()) {
       setErr("Please enter a URL or identifier");
@@ -305,9 +349,7 @@ export function NotebookPanel({ tool }: { tool: Tool }) {
     setBusy(true);
     try {
       const { url: resolvedUrl, fileName } = await resolveNotebookUrl(url);
-      const response = await fetch(resolvedUrl);
-      if (!response.ok) throw new Error(`Failed to fetch notebook: ${response.statusText}`);
-      const text = await response.text();
+      const text = await fetchWithCorsProxy(resolvedUrl);
       const nb = JSON.parse(text) as Notebook;
       if (!nb.cells || !Array.isArray(nb.cells)) {
         throw new Error("Invalid notebook format: missing cells array.");
@@ -460,6 +502,9 @@ export function NotebookPanel({ tool }: { tool: Tool }) {
                   <li><span className="font-mono">https://gist.github.com/...</span> - Gist URL</li>
                   <li><span className="font-mono">https://huggingface.co/...</span> - Hugging Face</li>
                 </ul>
+                <p className="mt-2 text-[11px] italic">
+                  💡 CORS proxy enabled for most URLs. If fetch fails, try uploading the file directly.
+                </p>
               </div>
             </div>
           )}
