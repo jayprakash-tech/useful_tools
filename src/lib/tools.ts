@@ -1212,6 +1212,26 @@ export const TOOLS: Tool[] = [
     ],
     related: ["text-watermark", "image-watermark", "batch-converter"],
   }),
+
+  /* ================= NOTEBOOK & DOCUMENTS ================= */
+  t({
+    slug: "jupyter-notebook-viewer", name: "Jupyter Notebook Viewer", cat: "notebook", icon: "bookOpen", panel: "notebook",
+    popular: true, accept: ".ipynb,application/json",
+    short: "View Jupyter notebooks in your browser and export to PDF with zero content loss.",
+    long: "Open any .ipynb file directly in your browser — no Jupyter server, no Python, no installation required. The viewer renders markdown cells (with LaTeX math via KaTeX), code cells (with syntax highlighting), and all output types including images, HTML, and plain text. When you are ready to share, export to PDF with pixel-perfect fidelity: every equation, every plot, every line of code is preserved exactly as rendered. All processing happens locally in your browser.",
+    formats: [".ipynb → rendered HTML", ".ipynb → PDF"],
+    features: ["Full notebook rendering in browser", "LaTeX math via KaTeX", "Syntax-highlighted code cells", "Image and HTML output support", "PDF export with zero content loss", "No server or Python required"],
+    steps: ["Drop your .ipynb file into the upload area.", "The notebook renders instantly with full formatting.", "Review the rendered output — scroll through all cells.", "Click Export PDF to download a pixel-perfect PDF copy."],
+    benefits: ["Open notebooks anywhere — no Jupyter needed", "Share results without installing Python", "PDF export preserves every detail", "100% private — nothing uploaded"],
+    faq: [
+      ["Does the PDF look exactly like the rendered notebook?", "Yes — the PDF is generated from the same rendered view, so every equation, plot, and code block appears identically. Zero content loss."],
+      ["What about interactive widgets?", "Interactive widgets (ipywidgets) are not supported since they require a live kernel. Static outputs (text, images, HTML, LaTeX) are all rendered correctly."],
+      ["Can I view notebooks on mobile?", "Yes — the viewer is fully responsive. PDF export works on desktop browsers."],
+      ["Is my notebook uploaded anywhere?", "No. Everything runs in your browser. Your code, data and outputs never leave your device."],
+      ["What notebook versions are supported?", "nbformat v4 notebooks (the current standard) are fully supported. Older v3 notebooks may render with minor formatting differences."],
+    ],
+    related: ["image-to-pdf", "images-to-zip"],
+  }),
 ];
 
 /* ---------------- registry helpers ---------------- */

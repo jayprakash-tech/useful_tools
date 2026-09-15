@@ -21,6 +21,7 @@ import {
 import {
   BatchResizePanel, BatchConvertPanel, BatchRenamePanel, BatchRoundedPanel, BatchWatermarkPanel,
 } from "./batch";
+import { NotebookPanel } from "./notebook";
 
 export type PanelProps = { tool: Tool };
 
@@ -82,4 +83,5 @@ export const PANELS: Record<string, ComponentType<PanelProps>> = {
   batchRename: BatchRenamePanel,
   batchRounded: BatchRoundedPanel,
   batchWatermark: BatchWatermarkPanel,
+  notebook: NotebookPanel,
 };

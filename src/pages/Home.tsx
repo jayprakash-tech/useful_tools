@@ -123,21 +123,21 @@ export function HomePage() {
           <div>
             <Reveal>
               <div className="inline-flex items-center gap-2 rounded-full border border-brand-300/70 bg-brand-50 px-3.5 py-1.5 text-xs font-bold text-brand-800 dark:border-brand-800 dark:bg-brand-950/60 dark:text-brand-300">
-                <ShieldCheck size={13} aria-hidden /> 75 tools · every image stays on your device
+                <ShieldCheck size={13} aria-hidden /> 76 tools · everything stays on your device
               </div>
             </Reveal>
             <Reveal delay={60}>
               <h1 className="mt-5 font-display text-[42px] font-bold leading-[1.04] tracking-tight text-ink-950 sm:text-6xl dark:text-white">
-                Image tools that never
+                Tools that never
                 <span className="relative whitespace-nowrap text-brand-700 dark:text-brand-400">
-                  {" "}see your images.
+                  {" "}see your data.
                   <svg className="absolute -bottom-1.5 left-1 w-full" height="8" viewBox="0 0 220 8" fill="none" preserveAspectRatio="none" aria-hidden><path d="M2 6C60 1.5 160 1.5 218 5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="text-brand-300 dark:text-brand-700" /></svg>
                 </span>
               </h1>
             </Reveal>
             <Reveal delay={120}>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-500 dark:text-ink-300">
-                Compress, convert, resize, crop, enhance and transform — instantly in your browser.
+                Image processing, Jupyter notebook viewing, PDF conversion and more — all in your browser.
                 No uploads, no accounts, no watermarks. Just fast, private tools that work offline after loading.
               </p>
             </Reveal>
@@ -146,7 +146,7 @@ export function HomePage() {
                 <ToolSearch big />
                 <div className="mt-4 flex flex-wrap items-center gap-2">
                   <span className="text-xs font-bold uppercase tracking-wide text-ink-400">Quick start:</span>
-                  {["image-compressor", "image-converter", "image-resizer", "image-crop", "image-to-pdf"].map((slug) => {
+                  {["image-compressor", "jupyter-notebook-viewer", "image-converter", "image-resizer", "image-to-pdf"].map((slug) => {
                     const t = TOOLS.find((x) => x.slug === slug)!;
                     return (
                       <a key={slug} href={`#/tools/${slug}`} className="focus-ring rounded-full border border-ink-200 bg-white px-3 py-1 text-xs font-bold text-ink-600 transition-colors hover:border-brand-400 hover:text-brand-700 dark:border-ink-700 dark:bg-ink-900 dark:text-ink-300 dark:hover:text-brand-400">
@@ -189,13 +189,16 @@ export function HomePage() {
             <Reveal key={t.slug} delay={i * 70}><ToolCard tool={t} /></Reveal>
           ))}
         </div>
+        <p className="mt-4 text-center text-sm text-ink-500 dark:text-ink-400">
+          Plus 72 more tools across 10 categories
+        </p>
       </section>
 
       {/* ---------- Categories ---------- */}
       <section className="border-y border-ink-200/70 bg-white py-16 dark:border-ink-800 dark:bg-ink-900/40" aria-labelledby="cats">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <Reveal>
-            <h2 id="cats" className="font-display text-3xl font-bold tracking-tight text-ink-950 dark:text-white">Nine categories, one promise: private</h2>
+            <h2 id="cats" className="font-display text-3xl font-bold tracking-tight text-ink-950 dark:text-white">Ten categories, one promise: private</h2>
             <p className="mt-2 max-w-2xl text-ink-500 dark:text-ink-400">Every category below runs on the same browser-only engine. Pick a lane or wander — nothing you do here leaves your device.</p>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

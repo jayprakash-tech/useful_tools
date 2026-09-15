@@ -6,7 +6,7 @@ import {
   Layers, Sun, Contrast, Droplet, Aperture, Moon, Circle, Film, RefreshCw, Eye, Focus, Wand2, Thermometer,
   Type, ImagePlus, PenTool, Smile, BadgeCheck, Share2, Pipette, Palette, List, Info, Eraser, Calculator,
   Printer, Star, LayoutTemplate, Sunrise, QrCode, Monitor, Tag, Stamp, Crop, User, Upload, Download,
-  Image as ImageIcon, FolderDown, ArrowRight, ShieldCheck,
+  Image as ImageIcon, FolderDown, ArrowRight, ShieldCheck, BookOpen,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { Tool } from "../lib/types";
@@ -24,7 +24,7 @@ export const ICONS: Record<string, LucideIcon> = {
   wand: Wand2, thermometer: Thermometer, type: Type, imagePlus: ImagePlus, pen: PenTool, smile: Smile,
   badge: BadgeCheck, share: Share2, pipette: Pipette, palette: Palette, list: List, info: Info, eraser: Eraser,
   calculator: Calculator, printer: Printer, star: Star, layout: LayoutTemplate, sunrise: Sunrise, qr: QrCode,
-  monitor: Monitor, tag: Tag, stamp: Stamp, crop: Crop, user: User,
+  monitor: Monitor, tag: Tag, stamp: Stamp, crop: Crop, user: User, bookOpen: BookOpen,
 };
 
 export const toolIcon = (key: string): LucideIcon => ICONS[key] ?? ImageIcon;
