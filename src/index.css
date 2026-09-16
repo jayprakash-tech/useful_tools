@@ -124,41 +124,89 @@ input[type="range"]:focus-visible {
 
 /* ---------- 3D Effects ---------- */
 .card-3d {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0);
+  position: relative;
+}
+
+.card-3d::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .card-3d:hover {
-  transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+  transform: perspective(1000px) rotateY(-8deg) rotateX(8deg) translateZ(25px) translateY(-10px);
   box-shadow: 
-    0 20px 40px -10px rgb(11 19 18 / 0.15),
-    0 8px 16px -8px rgb(11 19 18 / 0.1);
+    0 25px 50px -12px rgb(11 19 18 / 0.2),
+    0 12px 24px -8px rgb(11 19 18 / 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.card-3d:hover::before {
+  opacity: 1;
 }
 
 .dark .card-3d:hover {
   box-shadow: 
-    0 20px 40px -10px rgb(0 0 0 / 0.4),
-    0 8px 16px -8px rgb(0 0 0 / 0.3);
+    0 25px 50px -12px rgb(0 0 0 / 0.5),
+    0 12px 24px -8px rgb(0 0 0 / 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.card-3d:active {
+  transform: perspective(1000px) rotateY(-4deg) rotateX(4deg) translateZ(12px) translateY(-5px);
+  transition-duration: 0.1s;
 }
 
 /* 3D tilt effect for tool cards */
 .tool-card-3d {
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   transform-style: preserve-3d;
-  perspective: 1000px;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0);
+  position: relative;
+}
+
+.tool-card-3d::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(42, 145, 139, 0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
 }
 
 .tool-card-3d:hover {
-  transform: translateY(-12px) scale(1.02);
+  transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateZ(30px) translateY(-8px);
   box-shadow: 
-    0 25px 50px -12px rgb(31 117 113 / 0.25),
-    0 10px 20px -5px rgb(11 19 18 / 0.1);
+    0 30px 60px -15px rgb(31 117 113 / 0.3),
+    0 15px 30px -10px rgb(11 19 18 / 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.tool-card-3d:hover::after {
+  opacity: 1;
 }
 
 .dark .tool-card-3d:hover {
   box-shadow: 
-    0 25px 50px -12px rgb(42 145 139 / 0.3),
-    0 10px 20px -5px rgb(0 0 0 / 0.4);
+    0 30px 60px -15px rgb(42 145 139 / 0.4),
+    0 15px 30px -10px rgb(0 0 0 / 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.tool-card-3d:active {
+  transform: perspective(1000px) rotateY(-2deg) rotateX(2deg) translateZ(15px) translateY(-4px);
+  transition-duration: 0.1s;
 }
 
 /* Floating animation */
@@ -224,12 +272,38 @@ input[type="range"]:focus-visible {
 
 /* 3D icon containers */
 .icon-3d {
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0);
+  position: relative;
+}
+
+.icon-3d::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
 }
 
 .icon-3d:hover {
-  transform: rotateY(15deg) rotateX(-15deg) scale(1.1);
+  transform: perspective(1000px) rotateY(25deg) rotateX(-25deg) translateZ(20px) scale(1.15);
+  box-shadow: 
+    -8px 8px 20px rgba(0, 0, 0, 0.15),
+    -4px 4px 10px rgba(0, 0, 0, 0.1),
+    inset 2px -2px 5px rgba(255, 255, 255, 0.2);
+}
+
+.icon-3d:hover::before {
+  opacity: 1;
+}
+
+.icon-3d:active {
+  transform: perspective(1000px) rotateY(15deg) rotateX(-15deg) translateZ(10px) scale(1.05);
+  transition-duration: 0.1s;
 }
 
 /* Glassmorphism with depth */

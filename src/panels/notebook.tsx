@@ -297,44 +297,72 @@ export function NotebookPanel({ tool }: { tool: Tool }) {
   const fetchWithCorsProxy = async (targetUrl: string): Promise<string> => {
     // Try direct fetch first
     try {
-      const response = await fetch(targetUrl);
+      const response = await fetch(targetUrl, {
+        mode: 'cors',
+        headers: {
+          'Accept': 'application/json',
+        }
+      });
       if (response.ok) {
-        return await response.text();
+        const text = await response.text();
+        try {
+          JSON.parse(text);
+          return text;
+        } catch {
+          // Not valid JSON, continue to proxies
+        }
       }
     } catch (e) {
       // Direct fetch failed, try CORS proxies
     }
 
-    // List of CORS proxy services to try
+    // List of CORS proxy services to try (in order of reliability)
     const corsProxies = [
-      `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
       `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`,
-      `https://cors.eu.org/${targetUrl}`,
+      `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
+      `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`,
+      `https://cors.bridged.cc/${targetUrl}`,
+      `https://yacdn.org/proxy/${targetUrl}`,
     ];
 
+    let lastError = "";
     for (const proxyUrl of corsProxies) {
       try {
-        const response = await fetch(proxyUrl);
+        const response = await fetch(proxyUrl, {
+          headers: {
+            'Accept': 'application/json, text/plain, */*',
+          }
+        });
+        
         if (response.ok) {
           const text = await response.text();
+          
           // Verify it's actually JSON (not an error page)
           try {
-            JSON.parse(text);
-            return text;
+            const parsed = JSON.parse(text);
+            if (parsed.cells && Array.isArray(parsed.cells)) {
+              return text;
+            }
           } catch {
-            // Not valid JSON, try next proxy
+            lastError = "Response was not valid JSON";
             continue;
           }
+        } else {
+          lastError = `HTTP ${response.status}`;
         }
       } catch (e) {
-        // This proxy failed, try next one
+        lastError = e instanceof Error ? e.message : "Unknown error";
         continue;
       }
     }
 
     throw new Error(
-      "Unable to fetch the notebook. This may be due to CORS restrictions. " +
-      "Try downloading the file and uploading it directly, or use a GitHub/Gist link instead."
+      `Unable to fetch the notebook from this URL. The server may have strict CORS restrictions.\n\n` +
+      `Last error: ${lastError}\n\n` +
+      `Solutions:\n` +
+      `• Download the file and upload it directly using the "Upload File" option\n` +
+      `• If it's on GitHub, use the GitHub username/repository format\n` +
+      `• Upload to a GitHub Gist and use the Gist ID`
     );
   };
 
