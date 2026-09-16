@@ -1,13 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <linearGradient id="toolboxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="toolboxBody" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" style="stop-color:#2a918b;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1f7571;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1f7571;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#173f3e;stop-opacity:1" />
     </linearGradient>
+    <linearGradient id="highlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </linearGradient>
+    <filter id="shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+      <feOffset dx="0" dy="10" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.4"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-  <circle cx="256" cy="256" r="240" fill="url(#toolboxGrad)"/>
-  <rect x="120" y="200" width="272" height="180" rx="20" fill="#ffffff" opacity="0.95"/>
-  <path d="M 180 200 L 180 170 Q 180 150 200 150 L 312 150 Q 332 150 332 170 L 332 200" 
-        fill="none" stroke="#ffffff" stroke-width="18" stroke-linecap="round" opacity="0.95"/>
-  <text x="256" y="300" font-family="monospace" font-size="48" font-weight="bold" fill="#1f7571" text-anchor="middle">&lt;/&gt;</text>
+  
+  <circle cx="256" cy="256" r="240" fill="url(#toolboxBody)" filter="url(#shadow)"/>
+  <circle cx="256" cy="200" r="180" fill="url(#highlight)" opacity="0.3"/>
+  <rect x="110" y="210" width="292" height="180" rx="24" fill="#ffffff" opacity="0.98"/>
+  <rect x="120" y="220" width="272" height="40" rx="16" fill="url(#highlight)" opacity="0.6"/>
+  <path d="M 180 210 L 180 175 Q 180 155 200 155 L 312 155 Q 332 155 332 175 L 332 210" 
+        fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round"/>
+  <path d="M 185 210 L 185 178 Q 185 162 200 162 L 312 162 Q 327 162 327 178 L 327 210" 
+        fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.4"/>
+  <text x="256" y="315" font-family="'Courier New', monospace" font-size="56" font-weight="bold" fill="#1f7571" text-anchor="middle" opacity="0.95">&lt;/&gt;</text>
+  <ellipse cx="180" cy="195" rx="90" ry="35" fill="#ffffff" opacity="0.25"/>
 </svg>
