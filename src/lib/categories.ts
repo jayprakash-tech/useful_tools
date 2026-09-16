@@ -55,6 +55,12 @@ export const CATEGORIES: Category[] = [
     short: "Process many images at once — resize, convert, rename, round corners or watermark whole folders, then download a ZIP.",
     icon: "layers",
   },
+  {
+    slug: "notebook",
+    name: "Notebook & Documents",
+    short: "View, render and convert Jupyter notebooks and documents — with full code, math, images and outputs preserved.",
+    icon: "bookOpen",
+  },
 ];
 
 export const getCategory = (slug: string) => CATEGORIES.find((c) => c.slug === slug);

@@ -122,6 +122,209 @@ input[type="range"]:focus-visible {
   transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* ---------- 3D Effects ---------- */
+.card-3d {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0);
+  position: relative;
+}
+
+.card-3d::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-3d:hover {
+  transform: perspective(1000px) rotateY(-8deg) rotateX(8deg) translateZ(25px) translateY(-10px);
+  box-shadow: 
+    0 25px 50px -12px rgb(11 19 18 / 0.2),
+    0 12px 24px -8px rgb(11 19 18 / 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.card-3d:hover::before {
+  opacity: 1;
+}
+
+.dark .card-3d:hover {
+  box-shadow: 
+    0 25px 50px -12px rgb(0 0 0 / 0.5),
+    0 12px 24px -8px rgb(0 0 0 / 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.card-3d:active {
+  transform: perspective(1000px) rotateY(-4deg) rotateX(4deg) translateZ(12px) translateY(-5px);
+  transition-duration: 0.1s;
+}
+
+/* 3D tilt effect for tool cards */
+.tool-card-3d {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0);
+  position: relative;
+}
+
+.tool-card-3d::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(42, 145, 139, 0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.tool-card-3d:hover {
+  transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateZ(30px) translateY(-8px);
+  box-shadow: 
+    0 30px 60px -15px rgb(31 117 113 / 0.3),
+    0 15px 30px -10px rgb(11 19 18 / 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.tool-card-3d:hover::after {
+  opacity: 1;
+}
+
+.dark .tool-card-3d:hover {
+  box-shadow: 
+    0 30px 60px -15px rgb(42 145 139 / 0.4),
+    0 15px 30px -10px rgb(0 0 0 / 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.tool-card-3d:active {
+  transform: perspective(1000px) rotateY(-2deg) rotateX(2deg) translateZ(15px) translateY(-4px);
+  transition-duration: 0.1s;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotateX(2deg);
+  }
+}
+
+.float-3d {
+  animation: float 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+/* Depth layers */
+.depth-layer-1 {
+  transform: translateZ(10px);
+}
+
+.depth-layer-2 {
+  transform: translateZ(20px);
+}
+
+.depth-layer-3 {
+  transform: translateZ(30px);
+}
+
+/* 3D button effects */
+.btn-3d {
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  box-shadow: 
+    0 4px 6px -1px rgb(11 19 18 / 0.1),
+    0 2px 4px -1px rgb(11 19 18 / 0.06);
+}
+
+.btn-3d:hover {
+  transform: translateY(-2px) translateZ(5px);
+  box-shadow: 
+    0 10px 15px -3px rgb(11 19 18 / 0.15),
+    0 4px 6px -2px rgb(11 19 18 / 0.1);
+}
+
+.btn-3d:active {
+  transform: translateY(0px) translateZ(0px);
+  box-shadow: 
+    0 2px 4px -1px rgb(11 19 18 / 0.1),
+    0 1px 2px -1px rgb(11 19 18 / 0.06);
+}
+
+/* Parallax hero */
+.hero-parallax {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.hero-parallax > * {
+  transform: translateZ(0);
+}
+
+/* 3D icon containers */
+.icon-3d {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0);
+  position: relative;
+}
+
+.icon-3d::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.icon-3d:hover {
+  transform: perspective(1000px) rotateY(25deg) rotateX(-25deg) translateZ(20px) scale(1.15);
+  box-shadow: 
+    -8px 8px 20px rgba(0, 0, 0, 0.15),
+    -4px 4px 10px rgba(0, 0, 0, 0.1),
+    inset 2px -2px 5px rgba(255, 255, 255, 0.2);
+}
+
+.icon-3d:hover::before {
+  opacity: 1;
+}
+
+.icon-3d:active {
+  transform: perspective(1000px) rotateY(15deg) rotateX(-15deg) translateZ(10px) scale(1.05);
+  transition-duration: 0.1s;
+}
+
+/* Glassmorphism with depth */
+.glass-3d {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px 0 rgb(31 117 113 / 0.1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+  transform-style: preserve-3d;
+}
+
+.dark .glass-3d {
+  background: rgba(22, 32, 31, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px 0 rgb(0 0 0 / 0.3),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
 @keyframes toast-in {
   from { opacity: 0; transform: translateY(10px) scale(0.97); }
   to { opacity: 1; transform: none; }
@@ -154,4 +357,114 @@ input[type="range"]:focus-visible {
 
 .focus-ring {
   @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-paper dark:focus-visible:ring-offset-ink-950;
+}
+
+/* ---------- Notebook rendering ---------- */
+.notebook-render {
+  @apply bg-white text-ink-900 dark:bg-ink-900 dark:text-ink-100;
+}
+.notebook-container {
+  @apply mx-auto max-w-4xl px-6 py-8;
+}
+.nb-cell {
+  @apply mb-4;
+}
+.nb-markdown {
+  @apply max-w-none text-ink-800 dark:text-ink-200;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.nb-markdown h1, .nb-markdown h2, .nb-markdown h3, .nb-markdown h4 {
+  @apply font-display font-bold text-ink-900 dark:text-white;
+}
+.nb-markdown h1 { @apply text-2xl; }
+.nb-markdown h2 { @apply text-xl; }
+.nb-markdown h3 { @apply text-lg; }
+.nb-markdown p { @apply my-2 leading-relaxed; }
+.nb-markdown code {
+  @apply rounded bg-ink-100 px-1.5 py-0.5 font-mono text-xs dark:bg-ink-800;
+}
+.nb-markdown pre {
+  @apply overflow-x-auto rounded-lg bg-ink-50 p-3 dark:bg-ink-800;
+}
+.nb-markdown pre code {
+  @apply bg-transparent p-0;
+}
+.nb-markdown ul, .nb-markdown ol {
+  @apply my-2 ml-6;
+}
+.nb-markdown li {
+  @apply my-1;
+}
+.nb-markdown blockquote {
+  @apply my-3 border-l-4 border-brand-400 pl-4 italic text-ink-600 dark:text-ink-400;
+}
+.nb-markdown table {
+  @apply my-3 w-full border-collapse;
+}
+.nb-markdown th, .nb-markdown td {
+  @apply border border-ink-200 px-3 py-1.5 text-left text-sm dark:border-ink-700;
+}
+.nb-markdown th {
+  @apply bg-ink-50 font-bold dark:bg-ink-800;
+}
+.nb-code {
+  @apply rounded-lg border border-ink-200/70 bg-ink-50/50 dark:border-ink-700/60 dark:bg-ink-800/50;
+}
+.nb-code-header {
+  @apply border-b border-ink-200/70 px-3 py-1.5 dark:border-ink-700/60;
+}
+.nb-exec-count {
+  @apply font-mono text-xs font-bold text-ink-400;
+}
+.nb-code-source {
+  @apply overflow-x-auto p-3 font-mono text-sm leading-relaxed;
+}
+.nb-code-source code {
+  @apply font-mono;
+}
+.nb-outputs {
+  @apply border-t border-ink-200/70 bg-white px-3 py-2 dark:border-ink-700/60 dark:bg-ink-900;
+}
+.nb-output-text {
+  @apply my-1 overflow-x-auto whitespace-pre-wrap rounded bg-ink-50 p-2 font-mono text-xs text-ink-700 dark:bg-ink-800 dark:text-ink-300;
+}
+.nb-output-image {
+  @apply my-2 max-w-full rounded;
+}
+.nb-output-svg {
+  @apply my-2;
+}
+.nb-output-svg svg {
+  @apply max-w-full;
+}
+.nb-output-html {
+  @apply my-2;
+}
+.nb-output-latex {
+  @apply my-2 overflow-x-auto;
+}
+.nb-output-markdown {
+  @apply my-2;
+}
+.nb-output-markdown h1, .nb-output-markdown h2, .nb-output-markdown h3 {
+  @apply font-bold;
+}
+.nb-output-markdown h1 { @apply text-xl; }
+.nb-output-markdown h2 { @apply text-lg; }
+.nb-output-markdown h3 { @apply text-base; }
+.nb-output-markdown p { @apply my-1; }
+.nb-output-error {
+  @apply my-1 overflow-x-auto whitespace-pre-wrap rounded bg-rose-50 p-2 font-mono text-xs text-rose-700 dark:bg-rose-950/40 dark:text-rose-300;
+}
+.nb-raw {
+  @apply rounded-lg border border-ink-200/70 bg-ink-50 p-3 dark:border-ink-700/60 dark:bg-ink-800;
+}
+.nb-raw pre {
+  @apply font-mono text-sm;
+}
+
+/* highlight.js theme overrides */
+.nb-code-source .hljs {
+  @apply bg-transparent p-0;
 }

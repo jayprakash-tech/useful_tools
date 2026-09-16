@@ -6,7 +6,7 @@ import {
   Layers, Sun, Contrast, Droplet, Aperture, Moon, Circle, Film, RefreshCw, Eye, Focus, Wand2, Thermometer,
   Type, ImagePlus, PenTool, Smile, BadgeCheck, Share2, Pipette, Palette, List, Info, Eraser, Calculator,
   Printer, Star, LayoutTemplate, Sunrise, QrCode, Monitor, Tag, Stamp, Crop, User, Upload, Download,
-  Image as ImageIcon, FolderDown, ArrowRight, ShieldCheck,
+  Image as ImageIcon, FolderDown, ArrowRight, ShieldCheck, BookOpen,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { Tool } from "../lib/types";
@@ -24,7 +24,7 @@ export const ICONS: Record<string, LucideIcon> = {
   wand: Wand2, thermometer: Thermometer, type: Type, imagePlus: ImagePlus, pen: PenTool, smile: Smile,
   badge: BadgeCheck, share: Share2, pipette: Pipette, palette: Palette, list: List, info: Info, eraser: Eraser,
   calculator: Calculator, printer: Printer, star: Star, layout: LayoutTemplate, sunrise: Sunrise, qr: QrCode,
-  monitor: Monitor, tag: Tag, stamp: Stamp, crop: Crop, user: User,
+  monitor: Monitor, tag: Tag, stamp: Stamp, crop: Crop, user: User, bookOpen: BookOpen,
 };
 
 export const toolIcon = (key: string): LucideIcon => ICONS[key] ?? ImageIcon;
@@ -181,10 +181,10 @@ export function ToolCard({ tool, delay = 0 }: { tool: Tool; delay?: number }) {
   return (
     <a
       href={`#/tools/${tool.slug}`}
-      className="focus-ring group flex h-full flex-col rounded-xl border border-ink-200/70 bg-card p-5 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-brand-300 hover:shadow-lift dark:border-ink-700/60 dark:bg-ink-900 dark:hover:border-brand-700"
+      className="tool-card-3d focus-ring group flex h-full flex-col rounded-xl border border-ink-200/70 bg-card p-5 shadow-soft dark:border-ink-700/60 dark:bg-ink-900"
     >
       <div className="flex items-start justify-between gap-3">
-        <span className="rounded-lg bg-brand-100 p-2.5 text-brand-700 transition-transform duration-200 group-hover:scale-110 dark:bg-brand-900/70 dark:text-brand-300">
+        <span className="icon-3d rounded-lg bg-brand-100 p-2.5 text-brand-700 dark:bg-brand-900/70 dark:text-brand-300">
           <Icon size={19} aria-hidden />
         </span>
         {tool.popular && <Badge>Popular</Badge>}
@@ -208,9 +208,9 @@ export function CategoryCard({ slug }: { slug: string }) {
   return (
     <a
       href={`#/categories/${cat.slug}`}
-      className="focus-ring group flex items-start gap-4 rounded-xl border border-ink-200/70 bg-card p-5 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-brand-300 hover:shadow-lift dark:border-ink-700/60 dark:bg-ink-900 dark:hover:border-brand-700"
+      className="card-3d focus-ring group flex items-start gap-4 rounded-xl border border-ink-200/70 bg-card p-5 shadow-soft dark:border-ink-700/60 dark:bg-ink-900"
     >
-      <span className="rounded-lg bg-brand-100 p-3 text-brand-700 transition-transform group-hover:scale-110 dark:bg-brand-900/70 dark:text-brand-300">
+      <span className="icon-3d rounded-lg bg-brand-100 p-3 text-brand-700 dark:bg-brand-900/70 dark:text-brand-300">
         <Icon size={21} aria-hidden />
       </span>
       <span>

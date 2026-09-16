@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <!-- Main gradient for toolbox body -->
+    <linearGradient id="toolboxBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a918b;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1f7571;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#173f3e;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Highlight gradient -->
+    <linearGradient id="highlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </linearGradient>
+    
+    <!-- Handle gradient -->
+    <linearGradient id="handleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#45ada5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1f7571;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+      <feOffset dx="0" dy="10" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.4"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Inner shadow for depth -->
+    <filter id="innerShadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="0" dy="2"/>
+      <feComposite operator="out" in2="SourceAlpha"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.3 0"/>
+      <feBlend in2="SourceGraphic" mode="multiply"/>
+    </filter>
+  </defs>
+  
+  <!-- Background circle with gradient -->
+  <circle cx="256" cy="256" r="240" fill="url(#toolboxBody)" filter="url(#shadow)"/>
+  
+  <!-- Subtle radial highlight on background -->
+  <circle cx="256" cy="200" r="180" fill="url(#highlight)" opacity="0.3"/>
+  
+  <!-- Toolbox main body -->
+  <rect x="110" y="210" width="292" height="180" rx="24" fill="#ffffff" opacity="0.98"/>
+  
+  <!-- Toolbox body shadow/depth -->
+  <rect x="110" y="210" width="292" height="180" rx="24" fill="none" stroke="#1f7571" stroke-width="2" opacity="0.2"/>
+  
+  <!-- Toolbox body highlight -->
+  <rect x="120" y="220" width="272" height="40" rx="16" fill="url(#highlight)" opacity="0.6"/>
+  
+  <!-- Toolbox handle -->
+  <path d="M 180 210 L 180 175 Q 180 155 200 155 L 312 155 Q 332 155 332 175 L 332 210" 
+        fill="none" stroke="url(#handleGrad)" stroke-width="20" stroke-linecap="round"/>
+  
+  <!-- Handle highlight -->
+  <path d="M 185 210 L 185 178 Q 185 162 200 162 L 312 162 Q 327 162 327 178 L 327 210" 
+        fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.4"/>
+  
+  <!-- Tools inside toolbox -->
+  <!-- Wrench -->
+  <g transform="translate(150, 260) rotate(-20)">
+    <rect x="0" y="0" width="70" height="14" rx="7" fill="#1f7571" opacity="0.9"/>
+    <circle cx="70" cy="7" r="16" fill="none" stroke="#1f7571" stroke-width="10" opacity="0.9"/>
+    <circle cx="70" cy="7" r="8" fill="#ffffff" opacity="0.3"/>
+  </g>
+  
+  <!-- Code brackets -->
+  <text x="256" y="315" font-family="'Courier New', monospace" font-size="56" font-weight="bold" fill="#1f7571" text-anchor="middle" opacity="0.95">&lt;/&gt;</text>
+  
+  <!-- Image icon -->
+  <g transform="translate(295, 270)">
+    <rect x="0" y="0" width="56" height="46" rx="8" fill="none" stroke="#1f7571" stroke-width="7" opacity="0.9"/>
+    <circle cx="18" cy="16" r="7" fill="#1f7571" opacity="0.9"/>
+    <path d="M 7 40 L 22 24 L 38 34 L 50 28 L 50 40 Z" fill="#1f7571" opacity="0.7"/>
+    <!-- Image highlight -->
+    <rect x="4" y="4" width="48" height="12" rx="4" fill="#ffffff" opacity="0.2"/>
+  </g>
+  
+  <!-- Decorative shine/reflection -->
+  <ellipse cx="180" cy="195" rx="90" ry="35" fill="#ffffff" opacity="0.25"/>
+  
+  <!-- Bottom shadow for depth -->
+  <rect x="115" y="380" width="282" height="8" rx="4" fill="#000000" opacity="0.1"/>
+</svg>

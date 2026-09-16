@@ -1,12 +1,13 @@
-# ClearImageTools
+# Usefull Tools JEEBhaiya
 
-A complete, production-ready website of **75 free image tools** that run **100% in the browser**. No uploads, no accounts, no external APIs — every pixel is processed on the visitor's device using the HTML Canvas API, Web Workers and client-side libraries.
+A complete, production-ready website of **76+ free tools** that run **100% in the browser**. No uploads, no accounts, no external APIs — everything is processed on the visitor's device using the HTML Canvas API, Web Workers and client-side libraries.
 
-> **Live promise:** open your browser's network tab while using any tool — you will see zero image uploads.
+> **Live promise:** open your browser's network tab while using any tool — you will see zero uploads.
 
 ## Features
 
-- **75 working tools** across 9 categories: Compression, Conversion, Resize & Transform, Crop, Enhancement, Watermark & Text, Color & Analysis, Generators and Batch Tools
+- **76+ working tools** across 10 categories: Compression, Conversion, Resize & Transform, Crop, Enhancement, Watermark & Text, Color & Analysis, Generators, Batch Tools, and Notebook & Documents
+- **Jupyter Notebook Viewer** — render .ipynb files with full markdown, code, math (KaTeX), syntax highlighting, and image outputs; export to PDF with zero content loss
 - Image compressor (single, batch, quality-reducer, target-size, resize+compress)
 - Format conversion: JPG/PNG/WEBP/GIF/SVG/HEIC ↔ JPG/PNG/WEBP, Image→PDF, Images→ZIP, Base64 encode/decode, blob URL tool
 - Resizer (px/percentage/aspect-ratio), interactive crop, fixed social sizes, profile picture maker
@@ -29,11 +30,12 @@ A complete, production-ready website of **75 free image tools** that run **100% 
 | Icons | lucide-react |
 | Compression | browser-image-compression (Web Worker) |
 | Cropping | react-easy-crop (lazy-loaded) |
-| PDF | jspdf (dynamic import) |
+| PDF | jspdf + html2pdf.js (dynamic import) |
 | ZIP | jszip (dynamic import) |
 | EXIF | exifr (dynamic import) |
 | HEIC | heic2any (dynamic import, WASM) |
 | QR | qrcode (dynamic import) |
+| Notebook | marked + marked-highlight + highlight.js + katex + html2pdf.js |
 
 Heavy libraries are **dynamically imported** so they never block first paint.
 

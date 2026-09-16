@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-export const SITE_NAME = "ClearImageTools";
+export const SITE_NAME = "Usefull Tools JEEBhaiya";
 export const SITE_URL =
-  (import.meta.env.VITE_SITE_URL as string | undefined) ?? "https://clearimagetools.app";
+  (import.meta.env.VITE_SITE_URL as string | undefined) ?? "https://usefulltoolsjeebhaiya.app";
 
 export function useSeo(title: string, description?: string) {
   useEffect(() => {

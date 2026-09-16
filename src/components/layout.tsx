@@ -7,17 +7,17 @@ import { SITE_NAME } from "../lib/seo";
 
 export function Logo({ compact }: { compact?: boolean }) {
   return (
-    <a href="#/" className="focus-ring group flex items-center gap-2.5 rounded-lg" aria-label="ClearImageTools home">
-      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden className="transition-transform duration-300 group-hover:rotate-90">
-        <rect x="1.5" y="1.5" width="31" height="31" rx="9" className="fill-brand-600" />
-        <rect x="1.5" y="1.5" width="31" height="31" rx="9" stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-        <path d="M17 7.5 26.5 17 17 26.5 7.5 17Z" fill="rgba(255,255,255,0.28)" />
-        <circle cx="17" cy="17" r="4.6" fill="#fff" />
-        <circle cx="17" cy="17" r="2.1" className="fill-brand-600" />
-      </svg>
+    <a href="#/" className="focus-ring group flex items-center gap-2.5 rounded-lg" aria-label="Usefull Tools JEEBhaiya home">
+      <img 
+        src="/logo.svg" 
+        alt="Usefull Tools JEEBhaiya" 
+        width="40" 
+        height="40" 
+        className="icon-3d rounded-lg"
+      />
       {!compact && (
         <span className="font-display text-[17px] font-bold tracking-tight text-ink-900 dark:text-white">
-          Clear<span className="text-brand-600 dark:text-brand-400">Image</span>Tools
+          Usefull<span className="text-brand-600 dark:text-brand-400">Tools</span> JEEBhaiya
         </span>
       )}
     </a>
@@ -138,7 +138,7 @@ export function Footer() {
         <div>
           <Logo />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-500 dark:text-ink-400">
-            Free image tools that run entirely in your browser. Compress, convert, resize and enhance — privately, instantly, on any device.
+            Free tools that run entirely in your browser. Image processing, notebook viewing, PDF conversion and more — privately, instantly, on any device.
           </p>
           <a
             href="#/contact"
